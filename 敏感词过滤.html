@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script>
+	var str = "菲称仁爱礁附近17艘中国船均在菲军监视之下";
+	
+	//var s = str.replace(/菲称|中国|监视/g,'*');//只能替换一个字符
+	//console.log(s)
+	var s = str.replace(/菲称|中国|监视/g,function($0){
+		var temp = "";
+		for(var i = 0; i < $0.length; i++){
+			temp += '*';
+			console.log($0);//需要替换的每个字
+		}
+		return temp;
+	});
+	
+	console.log(s)
+</script>
+</body>
+</html>
