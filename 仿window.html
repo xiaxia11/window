@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#div {
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+	var div = document.getElementById("div");
+	
+	var X = 0;
+	var Y = 0;
+	div.onmousedown = function(ev){
+		var disX = ev.pageX - div.offsetLeft;
+		var disY = ev.pageY - div.offsetTop;
+		//创建一个新的div
+		
+		var newDiv = document.createElement('div');
+		newDiv.style.cssText = 'width: 100px;height: 100px;background:red;opacity: 0.3;position: absolute; left: '+X+'px; top: '+Y+'px;';
+		document.body.appendChild(newDiv);
+		//移动
+		document.onmousemove = function(ev){
+			newDiv.style.left = ev.pageX - disX +'px';
+			newDiv.style.top = ev.pageY - disY + 'px';
+			X = ev.pageX - disX;
+			Y = ev.pageY - disY;
+		}
+		document.onmouseup = function(){
+			div.style.left = X + 'px';
+			div.style.top = Y + 'px';
+			document.body.removeChild(newDiv);
+			document.onmousemove = document.onmouseup = null;
+		}
+		return false;
+	}
+</script>
+</body>
+</html>
